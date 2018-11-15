@@ -2,10 +2,7 @@
 title: "身份证导出识别为int"
 author: "李家翔"
 date: "2018-11-15"
-output: 
-  html_document: 
-    highlight: zenburn
-    theme: spacelab
+output: github_document
 ---
 
 >
