@@ -1,0 +1,53 @@
+[36<e6><b0><aa>20181116<e6><96><b0><e9><97><bb>](https://mp.weixin.qq.com/s/2tQKDQay07BpLHPOVaSVAw)
+
+
+
+```{r}
+m1 <- 
+function(url="https://github.com/JiaxiangBU/add2md/",name=""){
+        text <- glue::glue('[{name}]({url})')
+        clipr::write_clip(text,fileEncoding='UTF-8')
+        cat(
+            sep="\n"
+            ,text
+            ,cli::rule(left = "The text is already pasted on your system copyboard!", col = "red")
+        )
+    }
+```
+
+```{r}
+text <- '36氪20181116新闻'
+Encoding(text)
+text
+```
+
+
+```{r}
+m1('https://mp.weixin.qq.com/s/2tQKDQay07BpLHPOVaSVAw','36氪20181116新闻')
+```
+
+```{r}
+stri_enc_detect('encoding.csv')
+```
+
+```{r}
+read_csv("encoding.csv")
+```
+
+```{r}
+read.csv("encoding.csv", fileEncoding = "UTF-8",header = T)
+```
+
+
+reset RStudio encoding
+
+`Sys.setlocale('LC_ALL','UTF-8')`
+
+
+http://people.fas.harvard.edu/~izahn/posts/reading-data-with-non-native-encoding-in-r/
+
+关键看help文档，调整
+
+https://mp.weixin.qq.com/s/2tQKDQay07BpLHPOVaSVAw
+
+[](https://mp.weixin.qq.com/s/2tQKDQay07BpLHPOVaSVAw)
