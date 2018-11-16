@@ -2,20 +2,21 @@ R Notebook
 ================
 
 ``` r
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 library(readxl)
 library(tidyverse)
 ```
 
-    ## -- Attaching packages ------------------------------------------------------------------------------------------------ tidyverse 1.2.1 --
+    ## ─ Attaching packages ────────────────────────────────────── tidyverse 1.2.1 ─
 
-    ## √ ggplot2 3.1.0     √ purrr   0.2.5
-    ## √ tibble  1.4.2     √ dplyr   0.7.7
-    ## √ tidyr   0.8.2     √ stringr 1.3.1
-    ## √ readr   1.1.1     √ forcats 0.3.0
+    ## ✔ ggplot2 3.0.0     ✔ purrr   0.2.5
+    ## ✔ tibble  1.4.2     ✔ dplyr   0.7.6
+    ## ✔ tidyr   0.8.1     ✔ stringr 1.3.1
+    ## ✔ readr   1.1.1     ✔ forcats 0.3.0
 
-    ## -- Conflicts --------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
+    ## ─ Conflicts ──────────────────────────────────────── tidyverse_conflicts() ─
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
 
 ``` r
 library(lubridate)
@@ -108,6 +109,18 @@ data_2
     ## 7 200059     3 2198-02-11 12:25:00 2198-02-11 13:15:00          0.833
     ## 8 200059     4 2198-02-12 00:45:00 2198-02-12 15:00:00         14.2  
     ## 9 200059     5 2198-02-13 05:00:00 2198-02-13 07:00:00          2
+
+> data\_2里病人的第一次用药都没有了，都是从第二次开始的？
+
+是的 这是按照需求一和需求二分开的。
+
+> 但是第二次还是需要与第一次比较的。？
+
+进行什么样的比较？ “如果只用过一次药”和“如果用过不止一次”两个条件是互斥不重叠。
+
+> 我将“filter(n() \> 1) %\>%”这句删除，结果好像还是一样
+
+是指`data_2`的结果一样还是，合并后的结果一样？
 
 # 合并
 

@@ -3,7 +3,8 @@ title: "R Notebook"
 output: github_document
 ---
 
-```{r}
+```{r setup}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 library(readxl)
 library(tidyverse)
 library(lubridate)
@@ -58,6 +59,25 @@ data_2 <-
     )
 data_2
 ```
+
+
+>
+data_2里病人的第一次用药都没有了，都是从第二次开始的？
+
+是的
+这是按照需求一和需求二分开的。
+
+>    
+但是第二次还是需要与第一次比较的。？
+
+进行什么样的比较？
+“如果只用过一次药”和“如果用过不止一次”两个条件是互斥不重叠。
+
+>
+我将“filter(n() > 1) %>% ”这句删除，结果好像还是一样
+
+是指`data_2`的结果一样还是，合并后的结果一样？
+
 
 # 合并
 
