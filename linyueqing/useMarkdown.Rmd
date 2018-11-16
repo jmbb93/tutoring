@@ -1,14 +1,10 @@
 ---
 title: "【产品】P2P新闻速报"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     highlight: tango
     number_sections: yes
     theme: cerulean
-    toc: yes
-  word_document:
     toc: yes
 ---
 
@@ -54,12 +50,8 @@ library(knitr)
 根据公开报道，新流财经整理了目前成功对接到传统金融机构资金的P2P平台，不完全名单如下：
 
 <center>
-![图1: XXX](https://note.youdao.com/yws/public/resource/a61462fb5e641f372facb63a5a4404f7/xmlnote/9B243301222B46AD8397CB34E119B9B4/4001)
+![](https://note.youdao.com/yws/public/resource/a61462fb5e641f372facb63a5a4404f7/xmlnote/9B243301222B46AD8397CB34E119B9B4/4001)
 </center>
-
-
-
-![](fig/xxx/640.jpeg)
 
 业内人士透露，目前对接P2P资产比较多的银行多为互联网银行和城商行。比较突出的是新网银行、南粤银行、众邦银行、温州银行等，之前还有一些小型的城商行、农商行及区域性银行也对接过P2P资产，比如石嘴山银行等，但目前有一些已经暂停跟P2P的合作。
 
