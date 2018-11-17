@@ -85,6 +85,7 @@ data_2里病人的第一次用药都没有了，都是从第二次开始的？
 
 ```{r}
 bind_rows(data_1,data_2) %>% 
+    distinct() %>% 
     write_excel_csv('output.csv')
 ```
 
