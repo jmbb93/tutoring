@@ -30,6 +30,7 @@ starttime和endtime分别是这种药物使用的起止时间。随后一列是�
 >
 1. 如果只用过一次药，那么就筛选出第一次。
 1. 如果用过不止一次，那么筛选出每一次用药的开始时间与上一次用药的结束时间的差值小于一天的所有行。
+    1. 并且第一次用药记录保留
 
 那么这个是两个需求。
 
@@ -50,12 +51,14 @@ data_1
 data_2 <- 
     data %>% 
     group_by(id) %>% 
-    filter(n() > 1) %>% 
+    filter(n() > 1) %>%
     arrange(starttime) %>% 
     # 需要查看本次和上次的关系，因此排序
     # mutate(is_ok = (starttime - lag(endtime)) < ddays(1))
     filter(
-        (starttime - lag(endtime)) < ddays(1)
+        (
+            (starttime - lag(endtime)) < ddays(1) | num == 1
+        )
     )
 data_2
 ```
@@ -77,7 +80,6 @@ data_2里病人的第一次用药都没有了，都是从第二次开始的？
 我将“filter(n() > 1) %>% ”这句删除，结果好像还是一样
 
 是指`data_2`的结果一样还是，合并后的结果一样？
-
 
 # 合并
 
