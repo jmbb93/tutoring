@@ -88,7 +88,7 @@ library(rpart.plot)
 rpart.plot(x = mod, yesno = 2, type = 0, extra = 0)
 ```
 
-![](note_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 data_addpred <- 
@@ -149,6 +149,6 @@ data_addpred %>%
     ## 6 (0.645,0.675] 0.667  0.667 
     ## 7 (0.825,0.855] 0.833  0.833
 
-![](note_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 晓松，这个数据看来不支持0.03这么低的bin，你看最低都是0.045。
