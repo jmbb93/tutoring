@@ -10,11 +10,11 @@ read_utf8('说明.txt') %>%
     head
 ```
 
-    ## [1] "<U+FEFF>song_help：需要构建决策树的数据"                                                                                    
-    ## [2] "x1:x5：    自变量"                                                                                                          
-    ## [3] "y：        因变量"                                                                                                          
-    ## [4] ""                                                                                                                           
-    ## [5] "目的：构建一颗好的决策树（尽量通多更多的人且逾期率在3%以下）"                                                               
+    ## [1] "song_help：需要构建决策树的数据"                                                                                                  
+    ## [2] "x1:x5：    自变量"                                                                                                                
+    ## [3] "y：        因变量"                                                                                                                
+    ## [4] ""                                                                                                                                 
+    ## [5] "目的：构建一颗好的决策树（尽量通多更多的人且逾期率在3%以下）"                                                                     
     ## [6] "注：x2中的“0”是缺失值，x5中的“9”是特殊的一个值（即命中x5==“9”的这几个样本没有调用x5变量，并不是缺失，而是没调用x5这个特征）"
 
 我参考我之前做决策树的
@@ -85,10 +85,23 @@ mod <- rpart(formula = y ~ .
 ``` r
 # Display the results
 library(rpart.plot)
-rpart.plot(x = mod, yesno = 2, type = 0, extra = 0)
+rpart.plot(x = mod, yesno = 2, type = 5, extra = 1,digits = 10)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+`digits`参考加上，否则图示会做近似处理，参考 [Stack
+Overflow](https://stackoverflow.com/questions/31571248/rpart-rounding-values?answertab=active)
+
+``` r
+data %>% 
+    summarise(
+        node_1 = sum(x5 < 0.06535)
+    )
+```
+
+    ##   node_1
+    ## 1    679
 
 ``` r
 data_addpred <- 
@@ -149,6 +162,6 @@ data_addpred %>%
     ## 6 (0.645,0.675] 0.667  0.667 
     ## 7 (0.825,0.855] 0.833  0.833
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 晓松，这个数据看来不支持0.03这么低的bin，你看最低都是0.045。
