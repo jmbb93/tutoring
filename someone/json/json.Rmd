@@ -1,0 +1,32 @@
+---
+title: "json"
+author: "Jiaxiang Li"
+date: "`r Sys.Date()`"
+output: 
+    github_document:
+        df_print: tibble
+---
+
+```{r}
+library(data.table)
+library(tidyverse)
+data <- fread('test.csv')
+```
+
+```{r}
+data %>% 
+    # two cols
+    # json data is not std, clean it.
+    mutate(var = str_replace_all(var,'""','\"')) %>% 
+    mutate(var = map(.x = var,.f = jsonlite::fromJSON)) %>% 
+    unnest() %>% 
+    # unnest, spread
+    as_tibble() %>% 
+    print %>% 
+    write_excel_csv('tmp.csv')
+    # output
+```
+
+1. json code 可以参考
+[7.30 json格式文件清理成dataframe](https://jiaxiangli.netlify.com/2018/02/dplyr/)
+
