@@ -69,7 +69,7 @@ pca_data %>%
         labs(
             x = 'variables in top 10'
             ,y = 'contribution'
-            ,title = 'Good variable in PC1'
+            ,title = 'Good variable in PC2'
             ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
         )
 ```
