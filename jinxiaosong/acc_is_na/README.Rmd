@@ -41,8 +41,20 @@ mod <- rpart(formula = y ~ .
 ```{r}
 # Display the results
 library(rpart.plot)
-rpart.plot(x = mod, yesno = 2, type = 0, extra = 0)
+rpart.plot(x = mod, yesno = 2, type = 5, extra = 1,digits = 10)
 ```
+
+`digits`参考加上，否则图示会做近似处理，参考
+[Stack Overflow](https://stackoverflow.com/questions/31571248/rpart-rounding-values?answertab=active)
+
+```{r}
+data %>% 
+    summarise(
+        node_1 = sum(x5 < 0.06535)
+    )
+```
+
+
  
 ```{r}
 data_addpred <- 
