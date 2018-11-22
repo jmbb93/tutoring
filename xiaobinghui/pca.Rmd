@@ -1,0 +1,76 @@
+---
+title: "pca"
+author: "Jiaxiang Li"
+date: "`r Sys.Date()`"
+output: 
+    github_document:
+        df_print: tibble
+---
+
+以数据集`mtcars`为例
+
+```{r setup,warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(data.table)
+library(tidyverse)
+library(irlba)
+```
+
+```{r}
+mtcars
+pca_data <- 
+    mtcars %>% 
+    na.omit() %>% 
+    prcomp_irlba(n=2,center = T,scale. = T) %>% 
+    .$rotation %>% 
+    as.data.frame()
+pca_data
+pca_data %>% 
+    ggplot(aes(PC1,PC2)) +
+    geom_point() +
+    theme_bw() +
+    labs(
+        title = 'Obviously there are two group in the plot'
+        ,subtitle = 'one is in PC1 < 1, the other is in PC > 1.'
+        ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
+    )
+pca_data %>% 
+    mutate(name = mtcars %>% names) %>% 
+    top_n(10,abs(PC1)) %>% 
+    mutate(name = as.factor(name)) %>% 
+    ggplot(aes(
+        x = fct_reorder(name,PC1)
+        ,y = PC1
+        ,fill = name
+    )) +
+        geom_col(show.legend = FALSE, alpha = 0.8) +
+        theme_bw() +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5), 
+              axis.ticks.x = element_blank()) +
+        labs(
+            x = 'variables in top 10'
+            ,y = 'contribution'
+            ,title = 'Good variable in PC1'
+            ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
+        )
+pca_data %>% 
+    mutate(name = mtcars %>% names) %>% 
+    top_n(10,abs(PC2)) %>% 
+    mutate(name = as.factor(name)) %>% 
+    ggplot(aes(
+        x = fct_reorder(name,PC2)
+        ,y = PC2
+        ,fill = name
+    )) +
+        geom_col(show.legend = FALSE, alpha = 0.8) +
+        theme_bw() +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5), 
+              axis.ticks.x = element_blank()) +
+        labs(
+            x = 'variables in top 10'
+            ,y = 'contribution'
+            ,title = 'Good variable in PC1'
+            ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
+        )
+```
+
