@@ -1,7 +1,9 @@
-pca
+降维
 ================
 Jiaxiang Li
-2018-11-22
+2018-11-23
+
+# PCA
 
 以数据集`mtcars`为例
 
@@ -117,3 +119,37 @@ pca_data %>%
 ```
 
 ![](pca_files/figure-gfm/unnamed-chunk-1-3.png)<!-- -->
+
+# PCA regression
+
+PCA选择两个comp最优， regression 使用这两个comp调参最优
+
+并不代表PCA regession最优， 部分最优不等于整体最优。
+
+# Self-Organizing Maps
+
+这个方法主要是借鉴神经网络实现降维。 主要参考 @Schochdimensionalityreduction 这是 University of
+Manchester 的一个研究员介绍的。 以下做降维测试。
+
+使用Kaggle的
+[FIFA数据集](https://www.kaggle.com/thec03u5/fifa-18-demo-player-dataset)
+
+结果报错，回家再弄。
+
+``` r
+library(kohonen)
+fifa_tbl <- fread('PlayerAttributeData.csv')
+fifa_som <- fifa_tbl %>% 
+    select(Acceleration:Volleys) %>%
+    mutate_all(as.numeric) %>% 
+    scale() %>%
+    som(grid = somgrid(20, 20, "hexagonal"), rlen = 300)
+```
+
+``` r
+par(mfrow=c(1,2))
+plot(fifa_som, type="mapping", pch=20,
+     col = c("#F8766D","#7CAE00","#00B0B5","#C77CFF")[as.integer(fifa_tbl$position2)],
+     shape = "straight")
+plot(fifa_som, type="codes",shape="straight")
+```
