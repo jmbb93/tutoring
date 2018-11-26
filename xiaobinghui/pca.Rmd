@@ -3,9 +3,11 @@ title: "降维"
 author: "Jiaxiang Li"
 date: "`r Sys.Date()`"
 output: 
-    github_document:
+    md_document:
         df_print: tibble
-# bibliography: here::here("add.bib)
+        toc: true
+        toc_depth: 2
+# bibliography: `r here::here("add.bib")`
 ---
 
 # PCA

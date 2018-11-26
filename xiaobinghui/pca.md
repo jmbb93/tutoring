@@ -1,22 +1,18 @@
-降维
-================
-Jiaxiang Li
-2018-11-23
+-   [PCA](#pca)
+-   [PCA regression](#pca-regression)
+-   [Self-Organizing Maps](#self-organizing-maps)
 
-# PCA
+PCA
+===
 
 以数据集`mtcars`为例
 
-``` r
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-library(data.table)
-library(tidyverse)
-library(irlba)
-```
+    knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+    library(data.table)
+    library(tidyverse)
+    library(irlba)
 
-``` r
-mtcars
-```
+    mtcars
 
     ## # A tibble: 32 x 11
     ##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
@@ -33,15 +29,13 @@ mtcars
     ## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
     ## # ... with 22 more rows
 
-``` r
-pca_data <- 
-    mtcars %>% 
-    na.omit() %>% 
-    prcomp_irlba(n=2,center = T,scale. = T) %>% 
-    .$rotation %>% 
-    as.data.frame()
-pca_data
-```
+    pca_data <- 
+        mtcars %>% 
+        na.omit() %>% 
+        prcomp_irlba(n=2,center = T,scale. = T) %>% 
+        .$rotation %>% 
+        as.data.frame()
+    pca_data
 
     ## # A tibble: 11 x 2
     ##       PC1     PC2
@@ -58,98 +52,91 @@ pca_data
     ## 10  0.207  0.462 
     ## 11 -0.214  0.414
 
-``` r
-pca_data %>% 
-    ggplot(aes(PC1,PC2)) +
-    geom_point() +
-    theme_bw() +
-    labs(
-        title = 'Obviously there are two group in the plot'
-        ,subtitle = 'one is in PC1 < 1, the other is in PC > 1.'
-        ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
-    )
-```
-
-![](pca_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
-
-``` r
-pca_data %>% 
-    mutate(name = mtcars %>% names) %>% 
-    top_n(10,abs(PC1)) %>% 
-    mutate(name = as.factor(name)) %>% 
-    ggplot(aes(
-        x = fct_reorder(name,PC1)
-        ,y = PC1
-        ,fill = name
-    )) +
-        geom_col(show.legend = FALSE, alpha = 0.8) +
+    pca_data %>% 
+        ggplot(aes(PC1,PC2)) +
+        geom_point() +
         theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5), 
-              axis.ticks.x = element_blank()) +
         labs(
-            x = 'variables in top 10'
-            ,y = 'contribution'
-            ,title = 'Good variable in PC1'
+            title = 'Obviously there are two group in the plot'
+            ,subtitle = 'one is in PC1 < 1, the other is in PC > 1.'
             ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
         )
-```
 
-![](pca_files/figure-gfm/unnamed-chunk-1-2.png)<!-- -->
+![](pca_files/figure-markdown_strict/unnamed-chunk-1-1.png)
 
-``` r
-pca_data %>% 
-    mutate(name = mtcars %>% names) %>% 
-    top_n(10,abs(PC2)) %>% 
-    mutate(name = as.factor(name)) %>% 
-    ggplot(aes(
-        x = fct_reorder(name,PC2)
-        ,y = PC2
-        ,fill = name
-    )) +
-        geom_col(show.legend = FALSE, alpha = 0.8) +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5), 
-              axis.ticks.x = element_blank()) +
-        labs(
-            x = 'variables in top 10'
-            ,y = 'contribution'
-            ,title = 'Good variable in PC2'
-            ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
-        )
-```
+    pca_data %>% 
+        mutate(name = mtcars %>% names) %>% 
+        top_n(10,abs(PC1)) %>% 
+        mutate(name = as.factor(name)) %>% 
+        ggplot(aes(
+            x = fct_reorder(name,PC1)
+            ,y = PC1
+            ,fill = name
+        )) +
+            geom_col(show.legend = FALSE, alpha = 0.8) +
+            theme_bw() +
+            theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5), 
+                  axis.ticks.x = element_blank()) +
+            labs(
+                x = 'variables in top 10'
+                ,y = 'contribution'
+                ,title = 'Good variable in PC1'
+                ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
+            )
 
-![](pca_files/figure-gfm/unnamed-chunk-1-3.png)<!-- -->
+![](pca_files/figure-markdown_strict/unnamed-chunk-1-2.png)
 
-# PCA regression
+    pca_data %>% 
+        mutate(name = mtcars %>% names) %>% 
+        top_n(10,abs(PC2)) %>% 
+        mutate(name = as.factor(name)) %>% 
+        ggplot(aes(
+            x = fct_reorder(name,PC2)
+            ,y = PC2
+            ,fill = name
+        )) +
+            geom_col(show.legend = FALSE, alpha = 0.8) +
+            theme_bw() +
+            theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5), 
+                  axis.ticks.x = element_blank()) +
+            labs(
+                x = 'variables in top 10'
+                ,y = 'contribution'
+                ,title = 'Good variable in PC2'
+                ,captionn = 'made by Jiaxiang Li - jiaxiangli.netlify.com'
+            )
+
+![](pca_files/figure-markdown_strict/unnamed-chunk-1-3.png)
+
+PCA regression
+==============
 
 PCA选择两个comp最优， regression 使用这两个comp调参最优
 
 并不代表PCA regession最优， 部分最优不等于整体最优。
 
-# Self-Organizing Maps
+Self-Organizing Maps
+====================
 
-这个方法主要是借鉴神经网络实现降维。 主要参考 @Schochdimensionalityreduction 这是 University of
-Manchester 的一个研究员介绍的。 以下做降维测试。
+这个方法主要是借鉴神经网络实现降维。 主要参考
+@Schochdimensionalityreduction 这是 University of Manchester
+的一个研究员介绍的。 以下做降维测试。
 
 使用Kaggle的
 [FIFA数据集](https://www.kaggle.com/thec03u5/fifa-18-demo-player-dataset)
 
 结果报错，回家再弄。
 
-``` r
-library(kohonen)
-fifa_tbl <- fread('PlayerAttributeData.csv')
-fifa_som <- fifa_tbl %>% 
-    select(Acceleration:Volleys) %>%
-    mutate_all(as.numeric) %>% 
-    scale() %>%
-    som(grid = somgrid(20, 20, "hexagonal"), rlen = 300)
-```
+    library(kohonen)
+    fifa_tbl <- fread('PlayerAttributeData.csv')
+    fifa_som <- fifa_tbl %>% 
+        select(Acceleration:Volleys) %>%
+        mutate_all(as.numeric) %>% 
+        scale() %>%
+        som(grid = somgrid(20, 20, "hexagonal"), rlen = 300)
 
-``` r
-par(mfrow=c(1,2))
-plot(fifa_som, type="mapping", pch=20,
-     col = c("#F8766D","#7CAE00","#00B0B5","#C77CFF")[as.integer(fifa_tbl$position2)],
-     shape = "straight")
-plot(fifa_som, type="codes",shape="straight")
-```
+    par(mfrow=c(1,2))
+    plot(fifa_som, type="mapping", pch=20,
+         col = c("#F8766D","#7CAE00","#00B0B5","#C77CFF")[as.integer(fifa_tbl$position2)],
+         shape = "straight")
+    plot(fifa_som, type="codes",shape="straight")
