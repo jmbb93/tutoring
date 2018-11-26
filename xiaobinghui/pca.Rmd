@@ -5,8 +5,15 @@ date: "`r Sys.Date()`"
 output: 
     github_document:
         df_print: tibble
-bibliography: ../add.bib
+        toc: true
+        toc_depth: 2
+bibliography: "`r here::here('add.bib')`"
 ---
+
+
+`bibliography`申明问题参考
+[r markdown - Quotes and inline R code in Rmarkdown YAML - Stack Overflow](https://stackoverflow.com/questions/51296364/quotes-and-inline-r-code-in-rmarkdown-yaml/51370607#51370607)
+
 
 # PCA
 

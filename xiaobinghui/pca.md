@@ -1,7 +1,11 @@
 降维
 ================
 Jiaxiang Li
-2018-11-24
+2018-11-27
+
+`bibliography`申明问题参考 [r markdown - Quotes and inline R code in Rmarkdown
+YAML - Stack
+Overflow](https://stackoverflow.com/questions/51296364/quotes-and-inline-r-code-in-rmarkdown-yaml/51370607#51370607)
 
 # PCA
 
@@ -46,17 +50,17 @@ pca_data
     ## # A tibble: 11 x 2
     ##       PC1     PC2
     ##     <dbl>   <dbl>
-    ##  1  0.363  0.0161
-    ##  2 -0.374  0.0437
-    ##  3 -0.368 -0.0493
-    ##  4 -0.330  0.249 
-    ##  5  0.294  0.275 
-    ##  6 -0.346 -0.143 
-    ##  7  0.200 -0.463 
-    ##  8  0.307 -0.232 
-    ##  9  0.235  0.429 
-    ## 10  0.207  0.462 
-    ## 11 -0.214  0.414
+    ##  1 -0.363 -0.0161
+    ##  2  0.374 -0.0437
+    ##  3  0.368  0.0493
+    ##  4  0.330 -0.249 
+    ##  5 -0.294 -0.275 
+    ##  6  0.346  0.143 
+    ##  7 -0.200  0.463 
+    ##  8 -0.307  0.232 
+    ##  9 -0.235 -0.429 
+    ## 10 -0.207 -0.462 
+    ## 11  0.214 -0.414
 
 ``` r
 pca_data %>% 
@@ -153,6 +157,8 @@ plot(fifa_som, type="mapping", pch=20,
      shape = "straight")
 plot(fifa_som, type="codes",shape="straight")
 ```
+
+# Reference
 
 <div id="refs" class="references">
 
