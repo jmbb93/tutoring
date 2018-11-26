@@ -1,0 +1,42 @@
+map 用法
+================
+Jiaxiang Li
+2018-11-26
+
+``` r
+set.seed(123)
+# 以下出现随机数，限定 seed
+x <- rnorm(100)
+library(purrr)
+library(tidyr)
+# invoke_map(spread, .x = x)
+```
+
+这里`spread`函数设定有问题，因为点开help文档，这里需要指定两个参数，`key`和`value`这里只有一列数据`rnorm(100)`。
+
+> …中 x=x,为啥不是.x=x呢？我看这个函数的参数里是.x啊
+
+`purrr::invoke_map`看 help 文档。
+
+>   - `f`  
+>     For `invoke`, a function; for `invoke_map` a list of functions.
+
+这说明这里是一组函数，因此这里不能单个用`spread`，注意`list`的格式，写成`list(spread)`
+
+>   - `.x`  
+>     For `invoke`, an argument-list; for `invoke_map` a list of
+>     argument-lists the same length as `.f (or length 1)`. The default
+>     argument, `list(NULL)`, will be recycled to the same length as
+>     `.f`, and will call each function with no arguments (apart from
+>     any supplied in ….
+
+这里依然说明是一组数据，因此不能单个用`rnorm(100)`，注意`list`的格式，写成`list(rnorm(100))`
+
+为了跑通代码，我这里将函数`spread`替换成`mean`，你可以之后设置好`list`测试下。
+
+``` r
+invoke_map(list(mean),list(x))
+```
+
+    ## [[1]]
+    ## [1] -0.5604756
