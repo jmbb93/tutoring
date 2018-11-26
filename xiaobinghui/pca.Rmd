@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: 
     github_document:
         df_print: tibble
-# bibliography: here::here("add.bib)
+bibliography: ../add.bib
 ---
 
 # PCA
@@ -117,4 +117,4 @@ plot(fifa_som, type="codes",shape="straight")
 ```
 
 
-
+# Reference

@@ -1,7 +1,7 @@
 降维
 ================
 Jiaxiang Li
-2018-11-23
+2018-11-24
 
 # PCA
 
@@ -128,8 +128,8 @@ PCA选择两个comp最优， regression 使用这两个comp调参最优
 
 # Self-Organizing Maps
 
-这个方法主要是借鉴神经网络实现降维。 主要参考 @Schochdimensionalityreduction 这是 University of
-Manchester 的一个研究员介绍的。 以下做降维测试。
+这个方法主要是借鉴神经网络实现降维。 主要参考 Schoch (2017) 这是 University of Manchester
+的一个研究员介绍的。 以下做降维测试。
 
 使用Kaggle的
 [FIFA数据集](https://www.kaggle.com/thec03u5/fifa-18-demo-player-dataset)
@@ -153,3 +153,15 @@ plot(fifa_som, type="mapping", pch=20,
      shape = "straight")
 plot(fifa_som, type="codes",shape="straight")
 ```
+
+<div id="refs" class="references">
+
+<div id="ref-Schochdimensionalityreduction">
+
+Schoch, David. 2017. “Dimensionality Reduction Methods Using Fifa 18
+Player Data.” 2017.
+<http://blog.schochastics.net/post/dimensionality-reduction-methods/>.
+
+</div>
+
+</div>
