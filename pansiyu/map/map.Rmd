@@ -5,6 +5,25 @@ author: 'Jiaxiang Li'
 date: '`r Sys.Date()`'
 ---
 
+
+# `x=x`
+
+```{r}
+library(tidyverse)
+spread <- list(sd = sd, iqr = IQR, mad = mad)
+x <- rnorm(100)
+invoke_map_dbl(spread, x = x)
+```
+
+[参考 Community](https://community.rstudio.com/t/problems-with-invoke-map-dbl-s-argument/18800?u=econkid)的这个答案，
+注意函数`invoke_map_dbl(.f = spread, .x = list(NULL), ...)`，
+
+1. 这里`x = x`指的是`...`，也就是其他参数。
+1. 当对`.x`不指定时，默认`.x = list(NULL)`
+
+
+# other
+
 ```{r}
 set.seed(123)
 # 以下出现随机数，限定 seed
@@ -38,4 +57,3 @@ library(tidyr)
 ```{r}
 invoke_map(list(mean),list(x))
 ```
-

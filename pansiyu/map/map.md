@@ -3,6 +3,41 @@ map 用法
 Jiaxiang Li
 2018-11-26
 
+# `x=x`
+
+``` r
+library(tidyverse)
+```
+
+    ## -- Attaching packages ------------------------------------------------------------------------------------------------------------------------------ tidyverse 1.2.1 --
+
+    ## √ ggplot2 3.1.0     √ purrr   0.2.5
+    ## √ tibble  1.4.2     √ dplyr   0.7.8
+    ## √ tidyr   0.8.2     √ stringr 1.3.1
+    ## √ readr   1.1.1     √ forcats 0.3.0
+
+    ## -- Conflicts --------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
+
+``` r
+spread <- list(sd = sd, iqr = IQR, mad = mad)
+x <- rnorm(100)
+invoke_map_dbl(spread, x = x)
+```
+
+    ##       sd      iqr      mad 
+    ## 1.071393 1.381208 1.042040
+
+[参考
+Community](https://community.rstudio.com/t/problems-with-invoke-map-dbl-s-argument/18800?u=econkid)的这个答案，
+注意函数`invoke_map_dbl(.f = spread, .x = list(NULL), ...)`，
+
+1.  这里`x = x`指的是`...`，也就是其他参数。
+2.  当对`.x`不指定时，默认`.x = list(NULL)`
+
+# other
+
 ``` r
 set.seed(123)
 # 以下出现随机数，限定 seed
