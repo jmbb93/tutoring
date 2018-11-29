@@ -1,12 +1,7 @@
----
-title: "R Notebook"
-output: github_document
----
-
 
 这是晓松的函数
 
-```{r}
+``` r
 p <- 
 profvis::profvis({
   
@@ -74,3 +69,5 @@ canbu_summary(path = '.',
 })
 htmlwidgets::saveWidget(p, "profile.html")
 ```
+
+点击`profile.html`查看。
