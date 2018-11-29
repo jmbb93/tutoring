@@ -75,3 +75,5 @@ htmlwidgets::saveWidget(p, "profile.html")
 ```
 
 点击`profile.html`查看。
+
+1. 慢的地方在于写了很多 %>% 估计这里需要优化，合并函数。
