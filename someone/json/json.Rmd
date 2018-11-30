@@ -63,3 +63,13 @@ cran_stats(c('dplyr','data.table','tidyverse')) %>%
     ggplot(aes(x=end,y=downloads,col=package)) + 
     geom_line()
 ```
+
+# list
+
+```{r}
+data %>% 
+    mutate(var = str_replace_all(var,'""','\"')) %>% 
+    mutate(var = map(.x = var,.f = jsonlite::fromJSON)) %>% 
+    unnest()
+```
+
