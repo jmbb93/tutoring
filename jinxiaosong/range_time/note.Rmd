@@ -2,10 +2,14 @@
 output: github_document
 ---
 
+>
+怎么留下第一次打卡时间和最后一次打卡时间呢
+>
+如果只有一个打卡时间 就留下它本身就行
+
 ```{r setup}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
-
 
 ```{r}
 library(xfun)
@@ -35,10 +39,14 @@ data %>%
             # return(text)
             
             map_chr(x
-                    ,~paste(
-                        max(.,na.rm = T)
-                        ,min(.,na.rm = T)
-                        ,sep = ',')
+                    # ,length
+                    ,~case_when(
+                        length(.) == 0 ~ '-'
+                        ,length(.) == 1 ~ max(.)
+                        ,length(.) >= 2 ~ paste(max(.,na.rm = T)
+                                                ,min(.,na.rm = T)
+                                                ,sep = ',')
+                        )
                     )
         }
     ) %>% 
