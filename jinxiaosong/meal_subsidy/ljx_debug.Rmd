@@ -15,8 +15,9 @@ library(data.table)
 
 # 结论
 
-并行条件有问题。正确答案查看
+1. 并行条件有问题。正确答案查看
 **计算餐补**
+1. 我感觉就是 `difftime` 的原因
 
 ```{r eval=F}
 ifelse(
@@ -117,10 +118,8 @@ data %>%
                 hms(end_time) > hms('20:00:00') 
                 & (
                   hms(end_time) - hms(begin_time) >= dhours(10)
-                ) |
-                (
-                  hms(begin_time) < hms('10:10:00')
-                )
+                  | hms(begin_time) < hms('10:10:00')
+                ) 
                 ,1,0
             )
     ) %>% 
@@ -128,6 +127,8 @@ data %>%
     spread(var,is_valid) %>% 
     select(names(data)) -> data_work
 ```
+
+`A and (B or C)`
 
 ```{r}
 data_work$V29[49]
