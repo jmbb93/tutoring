@@ -5,6 +5,9 @@ output: github_document
 
 ### 2018-12-12 14:02:30
 
+1. How to count 
+1. combine logic
+
 ```{sql eval=F}
 SELECT 
     count(1)

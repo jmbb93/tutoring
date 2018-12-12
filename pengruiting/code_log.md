@@ -3,6 +3,11 @@ code log
 
 ### 2018-12-12 14:02:30
 
+1.  How to count
+2.  combine logic
+
+<!-- end list -->
+
 ``` sql
 SELECT 
     count(1)
