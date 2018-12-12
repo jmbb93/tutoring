@@ -3,6 +3,21 @@ title: "code log"
 output: github_document
 ---
 
+### 2018-12-12 14:02:30
+
+```{sql eval=F}
+SELECT 
+    count(1)
+    ,b.company_clean
+FROM xyjl.t181115_subsetmainsms_ljx a
+INNER JOIN [shuffle] xyjl.wd_7 b
+ON a.content= b.content
+WHERE messagetime>='2018-09-01'
+    AND messagetime<='2018-11-30'
+group by
+```
+
+
 ### 2018-12-06 16:41:00
 
 ```{sql eval=F}
