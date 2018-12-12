@@ -1,0 +1,31 @@
+---
+title: "code log"
+output: github_document
+---
+
+### 2018-12-12 14:31:27
+
+```{r}
+df <- data.frame(id = c('a', 'a', 'b'), p = c(1, 2, 1), d = c('A', 'B', 'A')); df
+df2 <- data.frame(id = c('a', 'b'), p_1 = c(1, 1), p_2 = c(2, NA), d_1 = c('A', 'A'), d_2 = c('B', NA)); df2
+```
+
+```{r}
+library(tidyverse)
+df %>%
+    gather(key,value,-id) %>% 
+    # 数据非唯一，因此需要加额外标签
+    mutate(key = str_c(key,value,sep = '_')) %>% 
+    spread(key,value)
+```
+
+
+
+```{r}
+# LETTERS 需要数字化，用如下表格替换即可
+tibble(
+    upper = LETTERS
+) %>% 
+    mutate(num = row_number())
+```
+
