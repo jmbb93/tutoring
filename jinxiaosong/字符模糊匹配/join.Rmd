@@ -1,0 +1,11 @@
+---
+title: "字符模糊匹配"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+library(data.table)
+fread('data.csv')
+```
+
