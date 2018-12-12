@@ -3,6 +3,20 @@ title: "code log"
 output: github_document
 ---
 
+### 2018-12-12 14:50:56
+
+```{r}
+df <- data.frame(id = c('a', 'a', 'b'), phone = c(111, 222, 333), name = c('Bob', 'John', 'Tom')); df
+
+df <- df %>% group_by(id) %>% mutate(number = 1:length(id))
+
+df_1 <- df %>% filter(number == 1) %>% select(-number)
+df_2 <- df %>% filter(number == 2) %>% select(-number)
+
+df_1 %>% left_join(df_2, by = 'id')
+```
+
+
 ### 2018-12-12 14:31:27
 
 ```{r}

@@ -1,6 +1,35 @@
 code log
 ================
 
+### 2018-12-12 15:11:38
+
+rebus 使用举例
+
+``` r
+library(rebus)
+```
+
+``` r
+optional('(') %R%
+    repeated(DGT,3) %R%
+    optional(')') %R%
+    char_class("-.() ") %R%
+    repeated(DGT,3) %R%
+    char_class("-.() ") %R%
+    repeated(DGT,4)
+```
+
+    ## <regex> [(]?[\d]{3}[)]?[-.() ][\d]{3}[-.() ][\d]{4}
+
+``` r
+one_or_more(ANY_CHAR) %R%
+    '验证码' %R%
+    # or(DGT,repeated(DGT,6),repeated(DGT,8))
+    or(repeated(DGT,1,6),repeated(DGT,8))
+```
+
+    ## <regex> [.]+验证码(?:[\d]{1,6}|[\d]{8})
+
 ### 2018-12-12 14:02:30
 
 1.  How to count
