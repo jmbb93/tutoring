@@ -1,44 +1,57 @@
 code log
 ================
 
+``` r
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
 ### 2018-12-13 13:25:47
+
+这里的翻译都有问题 在 impala中
+
+1.  `[.]` -\> `.`: `char_class = F`
+2.  `[\d]` -\> `\\d`: `as.character()`查看
+
+<!-- end list -->
 
 ``` r
 library(rebus)
+library(tidyverse)
 '【' %R%
-    one_or_more(ANY_CHAR) %R%
+    one_or_more(ANY_CHAR,char_class = F) %R%
     '】'%R%
-    one_or_more(ANY_CHAR) %R%
+    one_or_more(ANY_CHAR,char_class = F) %R%
     or('http'
        ,'t' %R% 
            or('/','.') %R% 
            'cn'
        ) %R%
     one_or_more(or('/','.')) %R%
-    optional(SPC) %R%
+    optional(SPC,char_class = F) %R%
     '验证码' %R%
-    optional(or('：',':')) %R%
-    repeated(DGT,1,4)
+    optional(or('：',':'),char_class = F) %R%
+    repeated(DGT,1,4,char_class = F) %>% 
+    as.character()
 ```
 
-    ## <regex> 【[.]+】[.]+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?[\d]{1,4}
+    ## [1] "【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+\\s?验证码(?:：|:)?\\d{1,4}"
 
-`【[.]+】[.]+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?[\d]{1,4}` 换成
-`【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?\\d{1,4}`
+``` sql
+-- 正则化验证
+select regexp_like(
+    '【快贷】新产品，5000元额度已入您的账户，3日有效，请尽快查收！戳 https://12i.cn/GdEnsq 验证码：1退订回T'
+    ,'【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+\\s?验证码(?:：|:)?\\d{1,4}'
+)
+```
 
-这里的翻译都有问题 在 impala中
-
-1.  `[.]` -\> `.`
-2.  `[\d]` -\> `\\d`
-
-<!-- end list -->
+<https://github.com/richierocks/rebus> 这是官网
 
 ``` sql
 select 
     sum(
         regexp_like(content,'http|t\\.cn') 
         and regexp_like(content,'退订') 
-        and regexp_like(content,'【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?\\d{1,4}')
+        and regexp_like(content,'【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+\\s?验证码(?:：|:)?\\d{1,4}')
         )
     /sum(
         regexp_like(content,'http|t\\.cn') 
@@ -47,12 +60,6 @@ select
 from opd.t181204_smsAddCompany_ljx
 -- 0.008758495443115662
 -- 比例很少
-
--- 正则化验证
-select regexp_like(
-    '【快贷】新产品，5000元额度已入您的账户，3日有效，请尽快查收！戳 https://12i.cn/GdEnsq 验证码：1退订回T'
-    ,'【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?\\d{1,4}'
-)
 ```
 
 ### 2018-12-12 15:11:38
