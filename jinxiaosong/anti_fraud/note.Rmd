@@ -20,6 +20,9 @@ read_utf8('维度解释.txt')
 ```{r}
 library(data.table)
 data <- fread('ah_data_base.csv',encoding = 'UTF-8')
+data <- fread('ah_data_base.csv',encoding = 'UTF-8')
+data02 <- fread('ah_data_base02.csv',encoding = 'UTF-8')
+data04 <- fread('ah_data_base04.csv',encoding = 'UTF-8')
 ```
 
 ```{r}
@@ -32,3 +35,28 @@ data %>%
 1. <input type="checkbox" id="checkbox1" class="styled">`passdue_day`这个可以看到逾期天数和第几次逾期吗？
 1. 第二个优先级滞后，我看到这里只有地理信息比较有用，整理省份的接壤数据，参考这个
 [GitHub文档](https://github.com/JiaxiangBU/tutoring/blob/master/zhangxinyue/border.md)
+
+```{r}
+data;data02
+setequal(data %>% select(-passdue_day),data02 %>% select(-passdue_day))
+```
+
+```{r}
+data03 %>% 
+    ggplot(aes(x = passdue_day)) +
+    geom_freqpoly() +
+    theme_bw() +
+    labs(
+        title = '定下首逾40天作为欺诈的目标'
+        ,caption = 'Made by Jiaxiang Li'
+    )
+```
+
+```{r}
+data03 %>% 
+    group_by(phone_no) %>% 
+    count()
+# 均匀分布 电话号码没什么用
+```
+
+
