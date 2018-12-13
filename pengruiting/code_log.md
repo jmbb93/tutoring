@@ -1,6 +1,60 @@
 code log
 ================
 
+### 2018-12-13 13:25:47
+
+``` r
+library(rebus)
+'【' %R%
+    one_or_more(ANY_CHAR) %R%
+    '】'%R%
+    one_or_more(ANY_CHAR) %R%
+    or('http'
+       ,'t' %R% 
+           or('/','.') %R% 
+           'cn'
+       ) %R%
+    one_or_more(or('/','.')) %R%
+    optional(SPC) %R%
+    '验证码' %R%
+    optional(or('：',':')) %R%
+    repeated(DGT,1,4)
+```
+
+    ## <regex> 【[.]+】[.]+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?[\d]{1,4}
+
+`【[.]+】[.]+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?[\d]{1,4}` 换成
+`【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?\\d{1,4}`
+
+这里的翻译都有问题 在 impala中
+
+1.  `[.]` -\> `.`
+2.  `[\d]` -\> `\\d`
+
+<!-- end list -->
+
+``` sql
+select 
+    sum(
+        regexp_like(content,'http|t\\.cn') 
+        and regexp_like(content,'退订') 
+        and regexp_like(content,'【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?\\d{1,4}')
+        )
+    /sum(
+        regexp_like(content,'http|t\\.cn') 
+        and regexp_like(content,'退订')
+        )
+from opd.t181204_smsAddCompany_ljx
+-- 0.008758495443115662
+-- 比例很少
+
+-- 正则化验证
+select regexp_like(
+    '【快贷】新产品，5000元额度已入您的账户，3日有效，请尽快查收！戳 https://12i.cn/GdEnsq 验证码：1退订回T'
+    ,'【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+[\s]?验证码(?:：|:)?\\d{1,4}'
+)
+```
+
 ### 2018-12-12 15:11:38
 
 rebus 使用举例
