@@ -22,6 +22,7 @@ library(data.table)
 data <- fread('ah_data_base.csv',encoding = 'UTF-8')
 data <- fread('ah_data_base.csv',encoding = 'UTF-8')
 data02 <- fread('ah_data_base02.csv',encoding = 'UTF-8')
+data03 <- fread('ah_data_base03.csv',encoding = 'UTF-8')
 data04 <- fread('ah_data_base04.csv',encoding = 'UTF-8')
 ```
 

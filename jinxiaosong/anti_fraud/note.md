@@ -10,8 +10,8 @@ list.files()
 ```
 
     ## [1] "ah_data_base.csv"   "ah_data_base02.csv" "ah_data_base03.csv"
-    ## [4] "note.md"            "note.Rmd"           "note_files"        
-    ## [7] "song_heop_2.zip"    "维度解释.txt"
+    ## [4] "ah_data_base04.csv" "note.md"            "note.Rmd"          
+    ## [7] "note_files"         "song_heop_2.zip"    "维度解释.txt"
 
 ``` r
 library(xfun)
@@ -29,8 +29,10 @@ read_utf8('维度解释.txt')
 ``` r
 library(data.table)
 data <- fread('ah_data_base.csv',encoding = 'UTF-8')
+data <- fread('ah_data_base.csv',encoding = 'UTF-8')
 data02 <- fread('ah_data_base02.csv',encoding = 'UTF-8')
 data03 <- fread('ah_data_base03.csv',encoding = 'UTF-8')
+data04 <- fread('ah_data_base04.csv',encoding = 'UTF-8')
 ```
 
 ``` r
@@ -60,7 +62,39 @@ data %>%
 2.  第二个优先级滞后，我看到这里只有地理信息比较有用，整理省份的接壤数据，参考这个
     [GitHub文档](https://github.com/JiaxiangBU/tutoring/blob/master/zhangxinyue/border.md)
 
-<!-- end list -->
+这里的接壤和的逻辑
+
+1.  接壤 是为1 否为0
+2.  隔海 如果两省份相隔1个海，那么也算接壤，即接壤=1，但是因为是一种特殊情况，所以需要把“隔海”这一项标记为1
+
+最红我需要这样一个矩阵
+
+``` r
+library(tidyverse)
+mtr_1 <- 
+matrix(
+    c(rep(1,9))
+    ,nrow = 3
+)
+diag(mtr_1) <- 0
+mtr_1[2,3] <- 0
+mtr_1[3,2] <- 0
+mtr_1 %>% 
+    `colnames<-`(str_c('省份',letters[1:3])) %>% 
+    `rownames<-`(str_c('省份',letters[1:3]))
+```
+
+    ##       省份a 省份b 省份c
+    ## 省份a     0     1     1
+    ## 省份b     1     0     0
+    ## 省份c     1     0     0
+
+这里表示每个省份的接壤情况，
+
+1.  假设这个矩阵为A
+2.  我的一个特征变量是B
+
+我会构造这样一个变量 \(AB\)
 
 ``` r
 data;data02
@@ -157,7 +191,7 @@ data03 %>%
     )
 ```
 
-![](note_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](note_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
 data03 %>% 
