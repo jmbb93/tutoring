@@ -5,9 +5,8 @@
     Blog](https://jiaxiangli.netlify.com/2017/12/08/r-rstudio/)
 2.  [RegEx正则化 学习笔记 - Jiaxiang Li’s
     Blog](https://jiaxiangli.netlify.com/2018/03/05/regex/)
-3.  [JiaxiangBU/string: The learning notes from the DataCamp course -
-    String Manipulation in R with
-    stringr](https://github.com/JiaxiangBU/string)
+3.  熟悉 rebus 包的函数，参考[Github](https://github.com/JiaxiangBU/string) 这个
+    Repo
 
 ### 2018-12-14 16:16:25
 
