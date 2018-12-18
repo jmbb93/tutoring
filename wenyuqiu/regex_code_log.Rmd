@@ -1,6 +1,6 @@
 ---
 output: github_document
-title: 'Code log'
+title: 'REGEX Code log'
 author: 'Jiaxiang Li'
 date: '`r Sys.Date()`'
 ---
