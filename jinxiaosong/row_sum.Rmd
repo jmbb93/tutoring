@@ -10,6 +10,8 @@ date: '`r Sys.Date()`'
 library(tidyverse)
 ```
 
+>
+我有一个数据框（20列），我需要重塑一列（该列是这20列中每一行数值型数据的和）
 
 ```{r}
 data <- 
@@ -39,5 +41,14 @@ data %>%
         ,median = pmap_dbl(.,lift_vd(median))
         ) %>% 
     select(sum,sd,var,median,everything())
+```
+
+>
+如果是某连续的几列呢
+比如第10到第20列
+
+```{r}
+data %>% 
+    mutate(sum = pmap_dbl(select(.,1:20),sum))
 ```
 
