@@ -1,4 +1,12 @@
 
+### 2018-12-19 17:40:24
+
+宇秋
+
+1.  早上那个正则化你弄的怎么样了？
+2.  离线数据见[git.ppdaicorp.com](http://git.ppdaicorp.com/lijiaxiang/share_files/blob/master/creditRating/rd_50.md)
+3.  我觉得明天你可以先试试Impala考试，看看题目
+
 ### 2018-12-19 15:01:54
 
 1.  [Git(hub/Lab)相关学习](https://github.com/JiaxiangBU/learn_git/blob/master/git.md)
