@@ -1,4 +1,8 @@
 
+### 2018-12-19 15:01:54
+
+1.  [Git(hub/Lab)相关学习](https://github.com/JiaxiangBU/learn_git/blob/master/git.md)
+
 ### 2018-12-14 16:17:48
 
 1.  [安装R和RStudio - Jiaxiang Li’s
