@@ -5,6 +5,30 @@ code log
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
+### 2018-12-19 11:46:55
+
+messagetime记录错误的是主营短信，目前我看了信用精灵的短信，没有记错的情况
+
+``` r
+library(RODBC)
+impala <- odbcConnect("Impala")
+sqlQuery(impala,"
+select 
+    sum(
+        cast(now() as string) < messagetime
+    )
+    ,avg(
+        cast(now() as string) < messagetime
+    )
+from opd.t181115_subsetxyjlSms_ljx
+         ")
+```
+
+``` 
+  sum(cast(now() as string) < messagetime) avg(cast(now() as string) < messagetime)
+1                                        0                                        0
+```
+
 ### 2018-12-13 13:25:47
 
 这里的翻译都有问题 在 impala中
@@ -43,8 +67,6 @@ select regexp_like(
     ,'【.+】.+(?:http|t(?:/|.)cn)(?:/|.)+\\s?验证码(?:：|:)?\\d{1,4}'
 )
 ```
-
-<https://github.com/richierocks/rebus> 这是官网
 
 ``` sql
 select 
