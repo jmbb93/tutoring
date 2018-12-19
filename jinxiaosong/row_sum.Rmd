@@ -1,0 +1,43 @@
+---
+output: github_document
+title: '按行向加'
+author: '李家翔'
+date: '`r Sys.Date()`'
+---
+
+
+```{r include=FALSE}
+library(tidyverse)
+```
+
+
+```{r}
+data <- 
+    matrix(1:100,ncol = 20) %>% 
+    as.data.frame()
+```
+
+```{r}
+data
+```
+
+```{r}
+data %>% 
+    mutate(sum = pmap_dbl(.,sum)) %>% 
+    select(sum,everything())
+```
+
+也可以使用 `rowSums`，但是这不是普遍的办法，`pmap_dbl`可以继续计算其他统计值
+
+
+```{r}
+data %>% 
+    mutate(
+        sum = pmap_dbl(.,sum)
+        ,sd = pmap_dbl(.,lift_vd(sd))
+        ,var = pmap_dbl(.,lift_vd(var))
+        ,median = pmap_dbl(.,lift_vd(median))
+        ) %>% 
+    select(sum,sd,var,median,everything())
+```
+
