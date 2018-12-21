@@ -14,6 +14,8 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 1. 神策数据，找余果，找表的研发，找我帮忙，问impala有没有表
 1. 李昊，开权限，**周一**，读特定表的权限
 
+更新
+
 ### 2018-12-19 11:46:55
 
 messagetime记录错误的是主营短信，目前我看了信用精灵的短信，没有记错的情况
