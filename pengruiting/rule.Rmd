@@ -70,4 +70,6 @@ from xyjl.t181115_subsetmainsms_ljx
 ```
 
 
-        
+1. `avg(A and B and C and !D)` > 5%
+1. `rand(123)` 100个，查看准确率
+1. `avg(A and B and C and !D and E)` > 5%
