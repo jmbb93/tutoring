@@ -17,7 +17,7 @@ n_rmd <-
     list.dirs() %>% 
     # 只是所有路径不是文件
     list.files() %>% 
-    str_subset('.Rmd$') %>% 
+    str_subset('\\.(Rmd|ipynb)$') %>% 
     length()
 ```
 
