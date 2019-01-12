@@ -19,47 +19,10 @@ create_path <- function(x) {
         dir.create(path)
     }
 }
-library(purrr)
 ```
 
-    ## 
-    ## Attaching package: 'purrr'
-
-    ## The following object is masked from 'package:magrittr':
-    ## 
-    ##     set_names
-
 ``` r
+library(purrr)
 path_list %>% 
     map(create_path)
 ```
-
-    ## [[1]]
-    ## NULL
-    ## 
-    ## [[2]]
-    ## NULL
-    ## 
-    ## [[3]]
-    ## NULL
-    ## 
-    ## [[4]]
-    ## NULL
-    ## 
-    ## [[5]]
-    ## NULL
-    ## 
-    ## [[6]]
-    ## NULL
-    ## 
-    ## [[7]]
-    ## NULL
-    ## 
-    ## [[8]]
-    ## NULL
-    ## 
-    ## [[9]]
-    ## NULL
-    ## 
-    ## [[10]]
-    ## NULL

@@ -21,6 +21,9 @@ create_path <- function(x) {
         dir.create(path)
     }
 }
+```
+
+```{r eval=F}
 library(purrr)
 path_list %>% 
     map(create_path)
