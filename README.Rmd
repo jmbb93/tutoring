@@ -23,12 +23,12 @@ n_rmd <-
 1. 更新记录见[NEWS](NEWS.md)
 1. 目前完成问题`r n_rmd`个
 
-```{r include=FALSE}
+```{r echo=FALSE}
 library(kableExtra)
 content_path %>% 
     as_tibble() %>% 
-    mutate(value = map_chr(value,~text_spec(., link = .))) %>% 
-    # set_names("目录") %>% 
+    mutate(value = map_chr(value,~text_spec(basename(.), link = .))) %>% 
+    set_names("目录") %>%
     kable(escape = F)
 ```
 
