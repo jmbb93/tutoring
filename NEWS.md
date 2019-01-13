@@ -1,3 +1,7 @@
+### 2019-01-13 20:56:05
+
+1. finish create dir exe and make public
+
 ### 2019-01-13 19:50:52
 
 1. update readme
