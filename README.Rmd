@@ -13,16 +13,22 @@ knitr::opts_chunk$set(
 
 ```{r include=FALSE}
 library(tidyverse)
+content_path <- list.files(recursive = T,full.names = T,pattern = '\\.(Rmd|ipynb)$')
 n_rmd <- 
-    list.dirs() %>% 
-    # 只是所有路径不是文件
-    list.files() %>% 
-    str_subset('\\.(Rmd|ipynb)$') %>% 
+    content_path %>% 
     length()
 ```
-
 
 1. 这个repo主要是保存和分享提问的问题，为了后期迭代和查询。
 1. 更新记录见[NEWS](NEWS.md)
 1. 目前完成问题`r n_rmd`个
+
+```{r include=FALSE}
+library(kableExtra)
+content_path %>% 
+    as_tibble() %>% 
+    mutate(value = map_chr(value,~text_spec(., link = .))) %>% 
+    # set_names("目录") %>% 
+    kable(escape = F)
+```
 
