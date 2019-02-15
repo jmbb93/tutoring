@@ -5,19 +5,6 @@
 2.  更新记录见[NEWS](NEWS.md)
 3.  目前完成问题71个
 
-<!-- end list -->
-
-``` r
-add2md::get_toc(".")
-#> Warning: replacing previous import 'purrr::transpose' by
-#> 'data.table::transpose' when loading 'add2md'
-#> Warning in max(.): max里所有的参数都不存在；回覆-Inf
-
-#> Warning in max(.): max里所有的参数都不存在；回覆-Inf
-
-#> Warning in max(.): max里所有的参数都不存在；回覆-Inf
-```
-
 <table>
 
 <thead>

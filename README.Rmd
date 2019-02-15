@@ -23,7 +23,7 @@ n_rmd <-
 1. 更新记录见[NEWS](NEWS.md)
 1. 目前完成问题`r n_rmd`个
 
-```{r}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 add2md::get_toc(".")
 ```
 
