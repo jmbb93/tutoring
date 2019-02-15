@@ -5,6 +5,8 @@ json manipulation using R
 
 参考[Reference](someone/json/json.md) json 在 R 中处理方式遵循以下方式。
 
+![](json2dataframe_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
 ``` r
 suppressMessages(library(tidyverse))
 read.csv("json.csv") %>% 
