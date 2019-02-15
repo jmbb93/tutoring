@@ -8,6 +8,29 @@ output: github_document
 参考[Reference](someone/json/json.md)
 json 在 R 中处理方式遵循以下方式。
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(DiagrammeR)
+grViz("
+digraph dot {
+
+graph [layout = dot]
+
+
+node [shape = egg,
+      style = filled,
+      color = black,
+      fontsize = 12,
+      fontname = Helvetica,
+      fontcolor = white,
+      # label = ''
+]
+
+json -> r_list [label = 'jsonlite::fromJSON']
+r_list -> data_frame [label = 'map and data.frame']
+
+}")
+```
+
 ```{r}
 suppressMessages(library(tidyverse))
 read.csv("json.csv") %>% 
