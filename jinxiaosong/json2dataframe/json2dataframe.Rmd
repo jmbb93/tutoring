@@ -1,0 +1,23 @@
+---
+title: "json manipulation using R"
+author: '李家翔'
+date: '`r Sys.Date()`'
+output: github_document
+bibliography: add.bib
+---
+
+参考[Reference](someone/json/json.md)
+json 在 R 中处理方式遵循以下方式。
+
+```{r}
+suppressMessages(library(tidyverse))
+library(data.table)
+read.csv("json.csv") %>% 
+    mutate(var = as.character(var)) %>%
+    # define in chr
+    mutate(var = map(.x = var,.f = jsonlite::fromJSON)) %>% 
+    mutate(var = map(var,as.data.frame)) %>% 
+    unnest()
+```
+
+参考[www.r-bloggers.com](https://www.r-bloggers.com/converting-a-list-to-a-data-frame/)
