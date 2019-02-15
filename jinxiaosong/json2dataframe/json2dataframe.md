@@ -7,21 +7,6 @@ json manipulation using R
 
 ``` r
 suppressMessages(library(tidyverse))
-library(data.table)
-```
-
-    ## 
-    ## Attaching package: 'data.table'
-
-    ## The following objects are masked from 'package:dplyr':
-    ## 
-    ##     between, first, last
-
-    ## The following object is masked from 'package:purrr':
-    ## 
-    ##     transpose
-
-``` r
 read.csv("json.csv") %>% 
     mutate(var = as.character(var)) %>%
     # define in chr

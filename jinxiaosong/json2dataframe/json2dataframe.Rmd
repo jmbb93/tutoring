@@ -10,7 +10,6 @@ json 在 R 中处理方式遵循以下方式。
 
 ```{r}
 suppressMessages(library(tidyverse))
-library(data.table)
 read.csv("json.csv") %>% 
     mutate(var = as.character(var)) %>%
     # define in chr
