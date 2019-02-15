@@ -3,7 +3,6 @@ title: "json manipulation using R"
 author: '李家翔'
 date: '`r Sys.Date()`'
 output: github_document
-bibliography: add.bib
 ---
 
 参考[Reference](someone/json/json.md)
