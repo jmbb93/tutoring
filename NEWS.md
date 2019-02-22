@@ -1,6 +1,7 @@
 ### 2019-02-22 13:36:46
 
 1. add dataMaid html type folder
+1. add dataMaid html type folder, type of Mac
 
 ### 2019-02-21 23:11:48
 
