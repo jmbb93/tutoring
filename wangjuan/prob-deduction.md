@@ -20,6 +20,8 @@ suppressMessages(library(tidyverse))
 
 todo map 无法 替代 for 循环。
 
+## 单次实验
+
 ``` r
 set.seed(123)
 result <- c()
@@ -79,3 +81,23 @@ mean(result)
 ```
 
     ## [1] 0.346
+
+以上都是单次实验，以下跑多次模拟实验，看分布。
+
+## 多次实验
+
+时间较长，因此采用 job 方式调用。
+
+job 查看 [multi-job.R](multi-job.R)
+
+3分钟跑完。
+
+``` r
+mean_result <- read_rds('mean_result.rds')
+```
+
+``` r
+hist(mean_result)
+```
+
+![](prob-deduction_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
