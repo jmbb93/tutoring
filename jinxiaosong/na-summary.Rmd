@@ -35,5 +35,3 @@ df %>%
     `colnames<-`(paste0(colnames(.),
                      c(rep("num",2),rep("num",2))))
 ```
-
-
