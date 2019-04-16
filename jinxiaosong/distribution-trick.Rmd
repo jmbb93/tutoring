@@ -42,5 +42,7 @@ modified_score <- bimodalDistFunc(n=40000,cpct,mu1,mu2, sig1,sig2) %>% sort
 hist(log(modified_score))
 ```
 
+双峰的理论参考 [en.wikipedia.org](https://en.wikipedia.org/wiki/Multimodal_distribution)
+
 如果逾期、成交这些字段区分度高才有意义。
 不然顶多只是个特征变量。特征变量的效果，总是要被标签检验的。
