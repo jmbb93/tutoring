@@ -1,3 +1,9 @@
+### 2019-05-01 14:01:45
+
+delete packrat
+
+Your site is having problems building: The symbolic link /packrat/lib-R/x86_64-apple-darwin15.6.0/3.5.1/KernSmooth targets a file which does not exist within your site's repository. For more information, see https://help.github.com/en/articles/page-build-failed-symlink-does-not-exist-within-your-sites-repository.
+
 ### 2019-04-16 19:43:25
 
 1. add 双峰分布构建
