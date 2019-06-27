@@ -52,6 +52,7 @@ https://jiaxiangbu.github.io/learn_rstudioapi/analysis/rstudio-and-api-learning-
 
 1. 相关的 commit 回复到 对应的 issue，这样方便之后跟踪每个问题
 1. 一个模块一个模块的解决，基本上一个问题，建立一个独立的issue，不同文档归属到对应的issue
+1. 使用 [GitHub Markdown](https://guides.github.com/features/mastering-markdown/) 代码方式，保证 issue 的整洁
 
 代码尽量避免截图，因为无法复制截图复现，因此更好的方式复制代码。
 
