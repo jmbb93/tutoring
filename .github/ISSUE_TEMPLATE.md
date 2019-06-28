@@ -46,7 +46,7 @@ https://jiaxiangbu.github.io/learn_rstudioapi/analysis/rstudio-and-api-learning-
 
 1. 数据传  `output` 文件夹
 1. 代码传 `analysis` 文件夹
-1. 命名的规范如，`190101-who-name.postfix`
+1. 命名的规范如，`190101-who_am_i-name.postfix`
 
 我们接下来反馈的时候给上有复现的代码和数据，这样我可以很快给你 debug。
 
