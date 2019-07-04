@@ -1,4 +1,7 @@
 
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"></ul></div>
+
 
 ```python
 import pandas as pd
@@ -80,6 +83,8 @@ df.head()
 
 
 本身一个样本有多个 json 元素。
+
+这样写避免了中间变量。
 
 
 ```python
@@ -609,6 +614,8 @@ pd.concat([pd.DataFrame(df.iloc[i,].nutrients).assign(**{'id':df.iloc[i,].id}) f
 </div>
 
 
+
+这样写方便理解。
 
 
 ```python
