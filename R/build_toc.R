@@ -81,6 +81,7 @@ tmp_toc_df <-
     mutate(md_link = glue(
         "1. [{title}]({publish_path}) ([{owner_name}]({owner_path}))"
     ))
+    
 
 # github issue ------------------------------------------------------------
 
@@ -105,8 +106,10 @@ tmp_toc_df2 <-
     select(md_link, modification_time)
 tmp_issue_df2 <-
     issue_df %>%
+    # select(owner_name, owner_path, title, publish_path) %>% 
+    # .$owner_path
     transmute(
-        md_link = glue("[{title}](publish_path) ([{owner_name}]({owner_path}))"),
+        md_link = glue("1. [{title}]({publish_path}) ([{owner_name}]({owner_path}))"),
         modification_time
     )
 
