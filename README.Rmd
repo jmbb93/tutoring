@@ -20,11 +20,15 @@ knitr::opts_chunk$set(
 
 ```{r include=FALSE}
 library(tidyverse)
-content_path <- list.files(recursive = T,full.names = T,pattern = '\\.(Rmd|ipynb)$')
-n_rmd <- 
-    content_path %>% 
-    length()
+source(here::here("R/build_toc.R"))
 ```
 
-1. 这个repo主要是保存和分享提问的问题，为了后期迭代和查询。
-1. 目前完成问题`r n_rmd`个
+1. 这个项目主要是保存和分享提问的问题，为了后期迭代和查询。
+1. 目前完成问题`r nrow(toc_df)`个，如下。
+
+## 目录
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+toc_df$md_link
+```
+
