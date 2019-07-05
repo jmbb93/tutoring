@@ -21,7 +21,7 @@ ipynb_pattern <- "\\.ipynb$"
 ipynb_df <-
     path_df %>%
     filter(basename(path) %>% str_detect(ipynb_pattern)) %>%
-    mutate(title = path %>% basename() %>% str_remove(ipynb_pattern) %>% str_replace_all("-|_", " ")) %>%
+    mutate(title = map_chr(path, prettify_file_path, regex_pattern = ipynb_pattern)) %>%
     mutate(
         publish_sub_path = path %>% str_remove(here::here()) %>%
             str_remove("^/") %>%
@@ -31,14 +31,19 @@ ipynb_df <-
         
     )
 
-# ipynb_pattern <- "\\.ipynb$"
-# 
-# path_df %>%
-#     filter(basename(path) %>% str_detect(ipynb_pattern)) %>%
+md_pattern <- "\\.md$"
+
+md_df <-
+    path_df %>%
+    filter(basename(path) %>% str_detect(md_pattern)) %>%
+    mutate(title = map_chr(path, safely_get_md_title, md_pattern = md_pattern)) %>%
+    mutate(
+        publish_path = path %>% str_replace(here::here(), "https://jiaxiangbu.github.io/tutoring/")
+    )
 
 
 toc_df <-
-    bind_rows(html_df, ipynb_df) %>%
+    bind_rows(html_df, ipynb_df, md_df) %>%
     mutate(
         owner_name = path %>% dirname() %>% str_remove(here::here()) %>% str_to_title(),
         owner_path = path %>% str_replace(
