@@ -4,12 +4,19 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r setup, include = FALSE}
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 ```
+# tutoring
+
+<!-- badges: start -->
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JiaxiangBU/tutoring/master)
+<!-- badges: end -->
 
 ```{r include=FALSE}
 library(tidyverse)
@@ -20,10 +27,4 @@ n_rmd <-
 ```
 
 1. 这个repo主要是保存和分享提问的问题，为了后期迭代和查询。
-1. 更新记录见[NEWS](NEWS.md)
 1. 目前完成问题`r n_rmd`个
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-add2md::get_toc(".")
-```
-
