@@ -1,4 +1,5 @@
 ---
+title: 计算 lasso 的 p 值
 bibliography: [../../imp_rmd/add_bc.bib, ../refs/add.bib]
 output: bookdown::html_document2
 ---
