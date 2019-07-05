@@ -38,7 +38,9 @@ md_df <-
     filter(basename(path) %>% str_detect(md_pattern)) %>%
     mutate(title = map_chr(path, safely_get_md_title, md_pattern = md_pattern)) %>%
     mutate(
-        publish_path = path %>% str_replace(here::here(), "https://jiaxiangbu.github.io/tutoring/")
+        publish_path = path %>% 
+            str_replace(here::here(), "https://jiaxiangbu.github.io/tutoring/") %>% 
+            str_remove(md_pattern)
     )
 
 
