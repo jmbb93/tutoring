@@ -86,7 +86,7 @@ tmp_toc_df <-
 # github issue ------------------------------------------------------------
 
 repo <- create_repo_ref("JiaxiangBU", "tutoring")
-issue_list <- get_issues(repo) %>% parse_issues()
+issue_list <- get_issues(repo, state = "all") %>% parse_issues()
 issue_df <-
     issue_list %>%
     as_tibble() %>%
