@@ -45,7 +45,8 @@ https://jiaxiangbu.github.io/learn_rstudioapi/analysis/rstudio-and-api-learning-
 把反馈的**截图**代码和输入数据上传，我在你的代码上进行修改。
 
 1. 数据传  `output` 文件夹
-1. 代码传 `analysis` 文件夹
+1. 代码 (`.Rmd`, `.md`) 文档传 `analysis` 文件夹
+    1. `.md` 可以展示目前代码状况，不需要我执行代码就可以看到结果，方便快速查看问题。
 1. 命名的规范如，`190101-who_am_i-name.postfix`
 
 我们接下来反馈的时候给上有复现的代码和数据，这样我可以很快给你 debug。
